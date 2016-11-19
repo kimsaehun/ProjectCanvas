@@ -17,7 +17,7 @@ window.onload = function() {
   // give the timer the context tool for the canvas
   timer.setCanvasCtx(ctx);
 
-  // give the canvas an on click event
+  // give the canvas an on mouse down event
   canvas.onmousedown = function (event) {
     var img = new Image();
     img.src = "res/music.png";
