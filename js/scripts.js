@@ -14,11 +14,17 @@ window.onload = function() {
   timer.setCanvasCtx(ctx);
 
   // give the canvas an on click event
-  canvas.onclick = function () {
+  canvas.onclick = function (event) {
     var img = new Image();
     img.src = "res/music.png";
     timer.images.push(img);
     timer.lifetimes.push(0);
+
+    // get click location
+    var relativeX = event.clientX - canvas.offsetLeft;
+    var relativeY = event.clientY - canvas.offsetTop;
+    timer.locations.push(relativeX);
+    timer.locations.push(relativeY);
   }
 }
 
@@ -27,10 +33,12 @@ A global timer object used for updating the game.
 Credit to /u/Apalapa
 */
 GlobalTimer = function() {
-  // add an array to hold all the images on the canvas
+  // an array to hold all the images on the canvas
   this.images = [];
-  // add an array to hold the opacity level of all the images
+  // an array to hold the opacity level of all the images
   this.lifetimes = [];
+  // an array to hold the opacity level of all the images
+  this.locations = [];
 
   this.timer = setInterval((function() {this.update();}).bind(this), 30);
   this.lastUpdate = Date.now();
@@ -57,7 +65,7 @@ GlobalTimer = function() {
 
     // draw all the images
     for (var i = 0; i < this.images.length; i++) { 
-      this.ctx.drawImage(this.images[i], i * this.images[i].width, i * this.images[i].height);
+      this.ctx.drawImage(this.images[i], this.locations[i * 2], this.locations[i * 2 + 1]);
     }
     // update all the lifetimes. loop backwards since array is being modified
     for (var i = this.lifetimes.length - 1; i >= 0; i--) { 
@@ -68,6 +76,8 @@ GlobalTimer = function() {
         this.images.splice(i, 1);
         // remove the lifetime
         this.lifetimes.splice(i, 1);
+        // remove the location
+        this.locations.splice(i, 2);
       }
     }
   }
