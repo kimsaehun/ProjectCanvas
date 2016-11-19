@@ -1,5 +1,9 @@
 window.onload = function() {
   var timer = new GlobalTimer();
+  var points = 0;
+
+  // grab the p element
+  var msg = document.getElementById("msg");
 
   // Grab the canvas element and its context.
   var canvas = document.getElementById("canvas");
@@ -14,7 +18,7 @@ window.onload = function() {
   timer.setCanvasCtx(ctx);
 
   // give the canvas an on click event
-  canvas.onclick = function (event) {
+  canvas.onmousedown = function (event) {
     var img = new Image();
     img.src = "res/music.png";
     timer.images.push(img);
@@ -25,6 +29,12 @@ window.onload = function() {
     var relativeY = event.clientY - canvas.offsetTop;
     timer.locations.push(relativeX);
     timer.locations.push(relativeY);
+
+    // add point
+    points++;
+    msg.innerHTML = points + " points";
+
+    return false;
   }
 }
 
