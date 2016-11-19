@@ -1,4 +1,6 @@
 window.onload = function() {
+  var timer = new GlobalTimer();
+
   // Grab the canvas element and its context.
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
@@ -6,11 +8,75 @@ window.onload = function() {
   canvas.width = 384; 
   canvas.height = 216;
 
-  // Paint an image to the canvas
-  var img = new Image();
-  img.onload = function() {
-    console.log("I've been called! I shall now draw my image!");
-    ctx.drawImage(this, 0, 0);
+  // give the timer the canvas
+  timer.setCanvas(canvas);
+  // give the timer the context tool for the canvas
+  timer.setCanvasCtx(ctx);
+
+  // give the canvas an on click event
+  canvas.onclick = function () {
+    var img = new Image();
+    img.src = "res/music.png";
+    timer.images.push(img);
+    timer.lifetimes.push(0);
   }
-  img.src = "res/music.png";
+}
+
+/*
+A global timer object used for updating the game.
+Credit to /u/Apalapa
+*/
+GlobalTimer = function() {
+  // add an array to hold all the images on the canvas
+  this.images = [];
+  // add an array to hold the opacity level of all the images
+  this.lifetimes = [];
+
+  this.timer = setInterval((function() {this.update();}).bind(this), 30);
+  this.lastUpdate = Date.now();
+
+  /*
+  Gets time passed since last update, and updates now 
+  to last update.
+  */
+  this.getUpdateTime = function() {
+    var passed = Date.now() - this.lastUpdate;
+    this.lastUpdate = Date.now();
+    return passed;
+  }
+
+  /*
+  Function is called by the timer to do all updates in the game.
+  */
+  this.update = function() {
+    //time since last update.
+    var time = this.getUpdateTime();
+
+    // clear the canvas
+    this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // draw all the images
+    for (var i = 0; i < this.images.length; i++) { 
+      this.ctx.drawImage(this.images[i], i * this.images[i].width, i * this.images[i].height);
+    }
+    // update all the lifetimes. loop backwards since array is being modified
+    for (var i = this.lifetimes.length - 1; i >= 0; i--) { 
+      this.lifetimes[i] += time;
+      // if an image has lived for over a second
+      if (this.lifetimes[i] > 1000) {
+        // remove the image
+        this.images.splice(i, 1);
+        // remove the lifetime
+        this.lifetimes.splice(i, 1);
+      }
+    }
+  }
+
+  this.setCanvas = function(canvas) {
+    this.canvas = canvas;
+  }
+
+  this.setCanvasCtx = function(ctx) {
+    this.ctx = ctx;
+  }
 }
