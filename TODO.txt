@@ -2,4 +2,4 @@ Currently there is an image on the canvas.
 
 Let's make it so that the image only appears when I tap on the canvas. For now lets just make it appear on (0, 0).
 
-Let's also make it so that the image fades away and removes itself.
+OK. Let's also make it so that the image just stay for a moment.
