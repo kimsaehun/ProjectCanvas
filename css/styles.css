@@ -1,9 +1,54 @@
+/* https://css-tricks.com/box-sizing/ */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body {
+  height: 100%;
+}
+
 body {
-  background: #3F51B5;
+  background: #F9FBE7;
+}
+
+#game-container {
+  margin: 0 auto;
+  position: relative;
+  width: 640px;
+  height: 360px;
+}
+
+#interface {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 192px;
+  height: 360px;
+  background: white;
 }
 
 #canvas {
-  background: #F5F5F5;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #EFEBE9;
   margin: 0 auto;
   display: block;
+}
+
+#logs {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 448px;
+  height: 108px;
+  background: black;
+}
+
+/* DAMN MARGINS */
+body, p {
+  margin: 0;
 }
