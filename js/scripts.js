@@ -18,6 +18,7 @@ window.onload = function() {
   timer.setCanvasCtx(ctx);
 
   // give the canvas an on mouse down event
+  // http://stackoverflow.com/questions/3799686/clicking-inside-canvas-element-selects-text
   canvas.onmousedown = function (event) {
     var img = new Image();
     img.src = "res/music.png";
