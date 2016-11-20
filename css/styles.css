@@ -11,14 +11,18 @@ html, body {
 }
 
 body {
+  position: relative;
   background: #F9FBE7;
 }
 
 #game-container {
-  margin: 0 auto;
-  position: relative;
   width: 640px;
   height: 360px;
+
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  margin-left: -320px;
 }
 
 #interface {
