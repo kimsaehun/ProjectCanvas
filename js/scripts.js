@@ -8,9 +8,6 @@ window.onload = function() {
   // Grab the canvas element and its context.
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
-  // set the canvas width and height
-  canvas.width = 384; 
-  canvas.height = 216;
 
   // give the timer the canvas
   timer.setCanvas(canvas);
@@ -54,7 +51,7 @@ GlobalTimer = function() {
   this.lastUpdate = Date.now();
 
   /*
-  Gets time passed since last update, and updates now 
+  Gets time passed since last update, and updates now
   to last update.
   */
   this.getUpdateTime = function() {
@@ -74,11 +71,11 @@ GlobalTimer = function() {
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // draw all the images
-    for (var i = 0; i < this.images.length; i++) { 
+    for (var i = 0; i < this.images.length; i++) {
       this.ctx.drawImage(this.images[i], this.locations[i * 2], this.locations[i * 2 + 1]);
     }
     // update all the lifetimes. loop backwards since array is being modified
-    for (var i = this.lifetimes.length - 1; i >= 0; i--) { 
+    for (var i = this.lifetimes.length - 1; i >= 0; i--) {
       this.lifetimes[i] += time;
       // if an image has lived for over a second
       if (this.lifetimes[i] > 1000) {
