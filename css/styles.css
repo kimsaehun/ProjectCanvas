@@ -20,9 +20,12 @@ body {
   padding: 2.5%;
 }
 
+.wrapper {
+  padding: 1%;
+}
+
 #game-container {
   background: #E8EAF6;
-  padding: 1%;
   width: 768px;
   height: 432px;
   margin: 0 auto;
