@@ -22,10 +22,13 @@ window.onload = function() {
     timer.lifetimes.push(0);
 
     // get click location
-    var relativeX = event.clientX - canvas.offsetLeft;
-    var relativeY = event.clientY - canvas.offsetTop;
-    timer.locations.push(relativeX);
-    timer.locations.push(relativeY);
+    // thanks to patriques
+    // http://stackoverflow.com/a/18053642
+    var canvasRect = canvas.getBoundingClientRect();
+    var cursorX = event.clientX - canvasRect.left;
+    var cursorY = event.clientY - canvasRect.top;
+    timer.locations.push(cursorX);
+    timer.locations.push(cursorY);
 
     // add point
     points++;
