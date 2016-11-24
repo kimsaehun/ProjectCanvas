@@ -23,9 +23,9 @@ body {
 #game-container {
   background: #E8EAF6;
   padding: 1%;
-  width: 100%;
-  min-width: 768px;
+  width: 768px;
   height: 432px;
+  margin: 0 auto;
 }
 
 #canvas {
