@@ -7,53 +7,89 @@ html {
 }
 
 /* DAMN MARGINS */
-body, p {
+body {
   margin: 0;
 }
 
 body {
-  background: #283593;
-  padding: 2.5%;
+  padding: 1.5%;
+}
+
+button {
+  border: none;
+  outline: none;
 }
 
 #game-container {
-  background: #E8EAF6;
-  width: 768px;
+  width: 720px;
   height: 432px;
-  margin: 0 auto;
-  padding: 12px;
-  /* https://css-tricks.com/fighting-the-space-between-inline-block-elements/ */
-  font-size: 0;
+  margin: auto;
 }
 
-#game-container .box {
-  background: white;
-  font-size: initial;
-  padding: 6px;
-}
-
-#status {
+#schema-wrapper {
   float: left;
-  margin-right: 6px;
-  width: 174px;
-  height: 216px;
+  width: 38px;
+  height: 432px;
+  overflow: hidden;
+  position: relative;
 }
+.scroll-arrow {
+  width: 100%;
+  height: 16px;
+}
+#arrow-up {
+  margin-bottom: 1px;
+  background: url('../res/arrow-up-release.png') no-repeat center;
+}
+#arrow-up:active { background: url('../res/arrow-up-press.png') no-repeat center; }
+#arrow-down {
+  margin-top: 1px;
+  background: url('../res/arrow-down-release.png') no-repeat center;
+}
+#arrow-down:active { background: url('../res/arrow-down-press.png') no-repeat center; }
+
+#schema {
+  width: 200%;
+  height: 396px;
+  overflow: auto;
+}
+.color-block {
+  width: 36px;
+  height: 36px;
+  margin: 1px;
+}
+.color-block.active { border: 1px solid black; }
+#red { background: #F44336; }
+#pink { background: #E91E63; }
+#purple { background: #9C27B0; }
+#deep-purple { background: #673AB7; }
+#indigo { background: #3F51B5; }
+#blue { background: #2196F3; }
+#light-blue { background: #03A9F4; }
+#cyan { background: #00BCD4; }
+#teal { background: #009688; }
+#green { background: #4CAF50; }
+#light-green { background: #8BC34A; }
+#lime { background: #CDDC39; }
+#yellow { background: #FFEB3B; }
+#amber { background: #FFC107; }
+#orange { background: #FF9800; }
+#deep-orange { background: #FF5722; }
+#brown { background: #795548; }
+#grey { background: #9E9E9E; }
+#blue-grey { background: #607D8B; }
+#white { background: #FFFFFF; border: 1px solid black; }
+#black { background: #000000; }
 
 #screen {
-  background: white;
-  display: inline-block;
-}
-
-#inventory {
   float: right;
-  margin-left: 6px;
-  width: 174px;
-  height: 216px;
+  width: 682px;
+  height: 432px;
+  padding: 1px;
 }
 
-#interface {
-  clear: both;
-  width: 100%;
-  height: 186px;
-  margin-top: 6px;
+#canvas {
+  width: 680px;
+  height: 428px;
+  border: 1px solid black;
 }
