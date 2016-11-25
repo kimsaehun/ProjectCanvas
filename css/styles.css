@@ -42,8 +42,6 @@ body {
 #screen {
   background: white;
   display: inline-block;
-  width: 384px;
-  height: 216px;
 }
 
 #inventory {
