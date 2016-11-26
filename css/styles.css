@@ -6,13 +6,10 @@ html {
   box-sizing: inherit;
 }
 
-/* DAMN MARGINS */
 body {
+  padding: 2.5%;
   margin: 0;
-}
-
-body {
-  padding: 1.5%;
+  user-select: none;
 }
 
 button {
