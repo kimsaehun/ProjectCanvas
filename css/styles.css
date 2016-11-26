@@ -15,6 +15,7 @@ body {
 button {
   border: none;
   outline: none;
+  padding: 0;
 }
 
 #game-container {
@@ -75,8 +76,10 @@ button {
 #brown { background: #795548; }
 #grey { background: #9E9E9E; }
 #blue-grey { background: #607D8B; }
-#white { background: #FFFFFF; border: 1px solid black; }
+#white { background: #FFFFFF; border: 1px dotted black; }
+#white.active { border-style: solid; }
 #black { background: #000000; }
+#black.active { border: 1px dotted white; }
 
 #screen {
   float: right;
