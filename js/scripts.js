@@ -76,9 +76,7 @@ window.onload = function() {
         if (this.mouseDown) {
           // if active color is not null
           if (this.activeColor != null) {
-        console.log("before update:  " + this.previousX + " " + this.previousY + " " + this.currentX + " " + this.currentY )
             this.updateCoord(event);
-        console.log("after update:  " + this.previousX + " " + this.previousY + " " + this.currentX + " " + this.currentY )
 
             // draw on the canvas
             this.context.beginPath();
