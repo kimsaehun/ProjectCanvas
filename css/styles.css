@@ -89,7 +89,5 @@ button {
 }
 
 #canvas {
-  width: 680px;
-  height: 428px;
   border: 1px solid black;
 }

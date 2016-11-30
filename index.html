@@ -36,7 +36,8 @@
     </div>
 
     <div id="screen">
-      <canvas id="canvas"></canvas>
+      <canvas id="canvas" width="680" height="428"
+          v-on:mousedown="paintOn" v-on:mouseup="paintOff" v-on:mouseout="paintOff" v-on:mousemove="draw"></canvas>
     </div>
   </div>
 

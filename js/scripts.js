@@ -1,9 +1,11 @@
 window.onload = function() {
   // color schema
   var schema = new Vue({
-    el: '#schema-wrapper',
+    el: '#canvas-container',
     data: {
-      activeColorBlock: null
+      activeColorBlock: null,
+      activeColor: null,
+      mouseDown: false
     },
     computed: {
       colorBlocks: function() {
@@ -11,7 +13,16 @@ window.onload = function() {
       },
       numColorBlocks: function() {
         return this.colorBlocks.length;
-      }
+      },
+      canvas: function() {
+        return document.getElementById("canvas");
+      },
+      context: function() {
+        return this.canvas.getContext("2d");
+      },
+      canvasRect: function() {
+        return this.canvas.getBoundingClientRect();
+      },
     },
     methods: {
       selectColor: function(event) {
@@ -22,6 +33,7 @@ window.onload = function() {
         // select the color
         this.activeColorBlock = event.target;
         this.activeColorBlock.classList.add('active');
+        this.activeColor = window.getComputedStyle(this.activeColorBlock).getPropertyValue("background-color");
       },
       selectAbove: function() {
         // default selection
@@ -37,6 +49,7 @@ window.onload = function() {
           this.activeColorBlock = this.colorBlocks[(activeIndex - 1 + this.numColorBlocks) % this.numColorBlocks ];
         }
         this.activeColorBlock.classList.add('active');
+        this.activeColor = window.getComputedStyle(this.activeColorBlock).getPropertyValue("background-color");
       },
       selectBelow: function() {
         // default selection
@@ -52,6 +65,30 @@ window.onload = function() {
           this.activeColorBlock = this.colorBlocks[(activeIndex + 1) % this.numColorBlocks ];
         }
         this.activeColorBlock.classList.add('active');
+        this.activeColor = window.getComputedStyle(this.activeColorBlock).getPropertyValue("background-color");
+      },
+      draw: function(event) {
+        // if mouse is down
+        if (this.mouseDown) {
+          // if active color is not null
+          if (this.activeColor != null) {
+            // get coordinants of mouse
+            // http://stackoverflow.com/a/18053642 thanks to patriques
+            var rect = canvas.getBoundingClientRect();
+            var cursorX = event.clientX - rect.left;
+            var cursorY = event.clientY - rect.top;
+
+            // draw a rectangle on coordinants
+            this.context.fillStyle = this.activeColor;
+            this.context.fillRect(cursorX - 5, cursorY - 5, 10, 10);
+          }
+        }
+      },
+      paintOn: function() {
+        this.mouseDown = true;
+      },
+      paintOff: function() {
+        this.mouseDown = false;
       }
     }
   });
