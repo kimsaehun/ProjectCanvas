@@ -1,1 +1,1 @@
-I HAVE NO IDEA WHAT THIS WILL BE
+This will now be a canvas project. Yes. A canvas. Project. Thank you.
