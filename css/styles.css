@@ -18,7 +18,7 @@ button {
   padding: 0;
 }
 
-#game-container {
+#canvas-container {
   width: 720px;
   height: 432px;
   margin: auto;
