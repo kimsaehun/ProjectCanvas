@@ -5,7 +5,11 @@ window.onload = function() {
     data: {
       activeColorBlock: null,
       activeColor: null,
-      mouseDown: false
+      mouseDown: false,
+      previousX: null,
+      previousY: null,
+      currentX: null,
+      currentY: null,
     },
     computed: {
       colorBlocks: function() {
@@ -72,17 +76,38 @@ window.onload = function() {
         if (this.mouseDown) {
           // if active color is not null
           if (this.activeColor != null) {
-            // get coordinants of mouse
-            // http://stackoverflow.com/a/18053642 thanks to patriques
-            var rect = canvas.getBoundingClientRect();
-            var cursorX = event.clientX - rect.left;
-            var cursorY = event.clientY - rect.top;
+        console.log("before update:  " + this.previousX + " " + this.previousY + " " + this.currentX + " " + this.currentY )
+            this.updateCoord(event);
+        console.log("after update:  " + this.previousX + " " + this.previousY + " " + this.currentX + " " + this.currentY )
 
-            // draw a rectangle on coordinants
-            this.context.fillStyle = this.activeColor;
-            this.context.fillRect(cursorX - 5, cursorY - 5, 10, 10);
+            // draw on the canvas
+            this.context.beginPath();
+            this.context.moveTo(this.previousX, this.previousY);
+            this.context.lineTo(this.currentX, this.currentY);
+            this.context.strokeStyle = this.activeColor;
+            this.context.lineWidth = 5;
+            this.context.stroke();
+            this.context.closePath();
           }
         }
+      },
+      updateCoord: function(event) {
+        // get coordinants of mouse
+        // http://stackoverflow.com/a/18053642 thanks to patriques
+        var rect = canvas.getBoundingClientRect();
+        var cursorX = event.clientX - rect.left;
+        var cursorY = event.clientY - rect.top;
+
+        if (this.previousX == null && this.previousY == null) {
+          this.previousX = cursorX;
+          this.previousY = cursorY;
+        }
+        else {
+          this.previousX = this.currentX;
+          this.previousY = this.currentY;
+        }
+        this.currentX = cursorX;
+        this.currentY = cursorY;
       },
       paintOn: function() {
         this.mouseDown = true;
